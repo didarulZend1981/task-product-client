@@ -1,12 +1,34 @@
 import { Link } from "react-router-dom";
+import useAuthHook from "../../providers/useAuthHook";
 
 
 const Header = () => {
+  const { user, logOut } = useAuthHook();
+  console.log("user -----",user);
+  const handleLogOut = () => {
+    logOut()
+        .then(() => { })
+        .catch(error => console.log(error))
+    }
+  const userName=<>
+      {user?.displayName ? <div className="navbar-end"><a className="btn"><button onClick={handleLogOut}>Log out </button></a></div>: <div className="navbar-end"> </div> }
+  </>
   const navItems =<>
         <li className="uppercase"><Link to="/">Home</Link></li>
-        <li className="uppercase"><Link to="/login">login</Link></li>
+          
+        {user?.email ? <> 
+
+            
+
+            
+        <li className="uppercase"><Link>{user?.displayName}</Link></li>
+        </>
+        : <> 
+          <li className="uppercase"><Link to="/login">login</Link></li>
         <li className="uppercase"><Link to="/registration">registration</Link></li>
-       
+      
+            </>
+        }
 
         
         
@@ -45,9 +67,7 @@ const Header = () => {
     {navItems}
     </ul>
   </div>
-  <div className="navbar-end">
-    <a className="btn">Button</a>
-  </div>
+  {userName}
 </div>
     </>
   );
