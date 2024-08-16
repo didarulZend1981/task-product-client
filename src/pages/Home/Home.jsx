@@ -20,11 +20,7 @@ const Home = () => {
 
   const limit = 9; // Items per page
 
-//   useEffect(() => {
-//     fetch('http://localhost:5000/products')
-//         .then(res => res.json())
-//         .then(data => setProducts(data));
-// }, [])
+
 
  useEffect(() => {
         const fetchProducts = async () => {
@@ -86,13 +82,13 @@ const Home = () => {
              <div className="flex justify-end mb-4">
                 <button
                     className="btn btn-outline mr-2"
-                    onClick={() => handleSortChange('Price', 'asc')}
+                    onClick={() => handleSortChange('price', 'asc')}
                 >
                     Price: Low to High
                 </button>
                 <button
                     className="btn btn-outline mr-2"
-                    onClick={() => handleSortChange('Price', 'desc')}
+                    onClick={() => handleSortChange('price', 'desc')}
                 >
                     Price: High to Low
                 </button>
@@ -103,16 +99,7 @@ const Home = () => {
                     Date Added: Newest First
                 </button>
             </div>
-            {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {
-                    products.map(product => <ProductCard
-                        key={product._id}
-                        product={product}
-                    ></ProductCard>)
-                }
-
-               
-            </div> */}
+            
             <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           
                
@@ -124,8 +111,8 @@ const Home = () => {
                         <div className="card-body">
                             <h2 className="card-title">{product.ProductName}</h2>
                             <p>{product.Description}</p>
-                            <p className="text-lg font-semibold">Price: ${product.Price}</p>
-                            <p>Category: {product.Category}</p>
+                            <p className="text-lg font-semibold">Price: ${product.price}</p>
+                            <p>Category: {product.category}</p>
                             <p>Ratings: {product.Ratings}</p>
                             <p className="text-sm text-gray-500">Created: {new Date(product.creationDate).toLocaleString()}</p>
                         </div>
@@ -162,3 +149,4 @@ const Home = () => {
 };
 
 export default Home;
+
