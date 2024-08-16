@@ -29,7 +29,7 @@ const Home = () => {
  useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/products?page=${page}&limit=${limit}&search=${search}&sortField=${sortField}&sortOrder=${sortOrder}`);
+                const response = await fetch(`https://task-product-server.vercel.app/api/products?page=${page}&limit=${limit}&search=${search}&sortField=${sortField}&sortOrder=${sortOrder}`);
                 const data = await response.json();
                 setProducts(data.products);
                 setTotalPages(data.totalPages);
