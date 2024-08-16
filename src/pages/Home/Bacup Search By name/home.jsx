@@ -17,7 +17,6 @@ const Home = () => {
   const [sortOrder, setSortOrder] = useState('desc');
 
 
-
   const limit = 9; // Items per page
 
 //   useEffect(() => {
@@ -41,8 +40,6 @@ const Home = () => {
     }, [page,search,sortField, sortOrder]);
 
   
- 
-
     const handleNextPage = () => {
       if (page < totalPages) {
           setPage(page + 1);
@@ -70,12 +67,6 @@ const Home = () => {
   return (
     <div className="container mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Products</h1>
-             
-
-
-
-
-
             <input
                 type="text"
                 value={search}

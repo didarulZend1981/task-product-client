@@ -11,13 +11,7 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
-  const [search, setSearch] = useState('');
-  const [sortField, setSortField] = useState('creationDate');
-  const [sortOrder, setSortOrder] = useState('desc');
-
-
-
+  
   const limit = 9; // Items per page
 
 //   useEffect(() => {
@@ -29,7 +23,7 @@ const Home = () => {
  useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/products?page=${page}&limit=${limit}&search=${search}&sortField=${sortField}&sortOrder=${sortOrder}`);
+                const response = await fetch(`http://localhost:5000/api/products?page=${page}&limit=${limit}`);
                 const data = await response.json();
                 setProducts(data.products);
                 setTotalPages(data.totalPages);
@@ -38,11 +32,9 @@ const Home = () => {
             }
         };
         fetchProducts();
-    }, [page,search,sortField, sortOrder]);
+    }, [page]);
 
   
- 
-
     const handleNextPage = () => {
       if (page < totalPages) {
           setPage(page + 1);
@@ -56,53 +48,9 @@ const Home = () => {
   };
 
 
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value);
-    setPage(1); // Reset to first page when search query changes
-  };
-
-  const handleSortChange = (field, order) => {
-      setSortField(field);
-      setSortOrder(order);
-      setPage(1); // Reset to first page when sort option changes
-  };
-
   return (
     <div className="container mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Products</h1>
-             
-
-
-
-
-
-            <input
-                type="text"
-                value={search}
-                onChange={handleSearchChange}
-                placeholder="Search products..."
-                className="input input-bordered w-full mb-4"
-            />
-             <div className="flex justify-end mb-4">
-                <button
-                    className="btn btn-outline mr-2"
-                    onClick={() => handleSortChange('Price', 'asc')}
-                >
-                    Price: Low to High
-                </button>
-                <button
-                    className="btn btn-outline mr-2"
-                    onClick={() => handleSortChange('Price', 'desc')}
-                >
-                    Price: High to Low
-                </button>
-                <button
-                    className="btn btn-outline"
-                    onClick={() => handleSortChange('creationDate', 'desc')}
-                >
-                    Date Added: Newest First
-                </button>
-            </div>
             {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {
                     products.map(product => <ProductCard
