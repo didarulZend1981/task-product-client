@@ -25,10 +25,10 @@ import {  GoogleAuthProvider } from "firebase/auth";
           // setLoading(true)
           return signOut(auth)
         }
-        const updateUserProfile = (name, photo) => {
+        const updateUserProfile = (name) => {
           return updateProfile(auth.currentUser, {
             displayName: name,
-            photoURL: photo,
+            // photoURL: photo,
           });
         };
 

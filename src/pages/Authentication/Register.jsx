@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuthHook from "../../providers/useAuthHook";
 import SocialLogin from "./SocialLogin";
-import toast from "react-hot-toast";
 
+import Swal from 'sweetalert2'
 
 const Register = () => {
   const [showPassword,setShowPassword]=useState(false);
@@ -18,25 +18,41 @@ e.preventDefault()
 const form = e.target
 const email = form.email.value
 const name = form.name.value
-const photo = form.photo.value
+// const photo = form.photo.value
 const pass = form.password.value
-console.log({ email, pass, name, photo })
+console.log({ email, pass, name })
 try {
     //2. User Registration
     const result = await createUser(email, pass)
     // console.log(result)
-    await updateUserProfile(name, photo)
+    await updateUserProfile(name)
     // setUser({ ...user, photoURL: photo, displayName: name })
     setLoading(false);
     navigate(from);
-    toast.success('Signup Successful')
-    //  navigate(from);
-    setUser({ ...user, photoURL: photo, displayName: name })
+   
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'User created successfully.',
+        showConfirmButton: false,
+        timer: 1500
+    });
+     navigate(from);
+    // photoURL: photo,
+    setUser({ ...user, displayName: name })
   } catch (err) {
     // console.log(pass);
     // console.log(err)
-    toast.error(err?.message)
+    // toast.error(err?.message)
+    Swal.fire({
+      icon: "error",
+      title: err?.message,
+      
+      footer: '<a href="#">Why do I have this issue?</a>'
+    });
   }
+
+  
 }
 
   return (
@@ -60,10 +76,10 @@ try {
   <input type="text" className="grow" placeholder="Email" name="email"/>
   
   </label>
-  <label className="input input-bordered flex items-center gap-2 mb-4">
+  {/* <label className="input input-bordered flex items-center gap-2 mb-4">
   
   <input type="text" className="grow" placeholder="photo url"  name="photo" />
-  </label>
+  </label> */}
 
   <label className="input input-bordered flex items-center gap-2 mb-4">
  

@@ -8,6 +8,7 @@ import AuthProviders from './providers/AuthProviders.jsx'
 
 
 
+
 createRoot(document.getElementById('root')).render(
   <div className='max-w-7xl mx-auto'>
   <StrictMode>

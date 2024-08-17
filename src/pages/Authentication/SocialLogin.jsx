@@ -1,5 +1,6 @@
 import React from 'react';
-import toast from 'react-hot-toast';
+
+import Swal from 'sweetalert2'
 
 import useAuthHook from '../../providers/useAuthHook';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -15,10 +16,16 @@ const SocialLogin = () => {
     socialProvider().then(result=>{
         if(result.user){
           setLoading(false);
-          // toast.success('successfully login')
-          navigate(from);
-          toast.success('successfully login')
          
+          navigate(from);
+          
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'successfully login.',
+              showConfirmButton: false,
+              timer: 1500
+          });
         }
     })
 }
@@ -28,7 +35,7 @@ const SocialLogin = () => {
      
      
 
-     <button onClick={()=>handleSocialLogin(googleLogin)} className="btn btn-outline btn-primary"> Google</button>
+     <button onClick={()=>handleSocialLogin(googleLogin)} className="btn btn-outline btn-secondary"> Google</button>
 
 
          

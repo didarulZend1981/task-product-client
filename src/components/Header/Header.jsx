@@ -11,7 +11,7 @@ const Header = () => {
         .catch(error => console.log(error))
     }
   const userName=<>
-      {user?.displayName ? <div className="navbar-end"><a className="btn"><button onClick={handleLogOut}>Log out </button></a></div>: <div className="navbar-end"> </div> }
+      {user?.displayName ? <div className="navbar-end"><a className="btn"><button onClick={handleLogOut}><span className="uppercase font-semibold">Log out </span></button></a></div>: <div className="navbar-end"> </div> }
   </>
   const navItems =<>
         <li className="uppercase"><Link to="/">Home</Link></li>
@@ -21,7 +21,7 @@ const Header = () => {
             
 
             
-        <li className="uppercase"><Link>{user?.displayName}</Link></li>
+        <li className="uppercase"><Link>Wellcome <sapn className="font-semibold text-orange-700">{user?.displayName}</sapn></Link></li>
         </>
         : <> 
           <li className="uppercase"><Link to="/login">login</Link></li>
@@ -60,7 +60,7 @@ const Header = () => {
         {navItems}
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">daisyUI</a>
+    <Link to="/"><a className="btn btn-ghost text-xl"><sapn className="font-bold text-emerald-800">TASK-BD</sapn></a></Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">

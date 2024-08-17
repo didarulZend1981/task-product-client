@@ -6,7 +6,7 @@ import Header from "../components/Header/Header";
 const Main = () => {
   return (
     <>
-      <div className="h-20 shadow-lg bottom-3">
+      <div className="h-20 shadow-lg bottom-solid">
           <Header/>
       </div>
       <div className='min-h-[calc(100vh-160px)]'>
