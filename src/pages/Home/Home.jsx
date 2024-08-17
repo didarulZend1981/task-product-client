@@ -3,6 +3,7 @@
 
 import { useEffect,useState } from "react";
 import axios from 'axios';
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -104,7 +105,14 @@ const Home = () => {
   };
 
   return (
+    <>
+    
+      <Helmet>
+        <title className="uppercase">TASK-BD | Home</title>
+        
+      </Helmet>
     <div className="container mx-auto p-4">
+       
             
              
         <div>
@@ -223,6 +231,7 @@ const Home = () => {
 
            
         </div>
+        </>
   );
 };
 

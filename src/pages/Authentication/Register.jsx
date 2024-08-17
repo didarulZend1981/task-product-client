@@ -4,6 +4,7 @@ import useAuthHook from "../../providers/useAuthHook";
 import SocialLogin from "./SocialLogin";
 
 import Swal from 'sweetalert2'
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const [showPassword,setShowPassword]=useState(false);
@@ -57,6 +58,10 @@ try {
 
   return (
     <div>
+      <Helmet>
+        <title className="uppercase">TASK-BD | Register</title>
+        
+      </Helmet>
     <div className="hero min-h-screen bg-base-200">
      <div className="hero-content flex-col lg:flex-row">
          <div className="w-1/2 mr-12">
@@ -87,7 +92,7 @@ try {
   placeholder="password"
   
   />
-   <span onClick={()=>setShowPassword(!showPassword)}></span>
+   {/* <span onClick={()=>setShowPassword(!showPassword)}></span> */}
   </label>
                      <div className="form-control mt-6">
                          <input className="btn btn-primary" type="submit" value="Sign Up" />

@@ -3,6 +3,7 @@ import useAuthHook from "../../providers/useAuthHook";
 
 import SocialLogin from "./SocialLogin";
 import Swal from 'sweetalert2';
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const {signIn,setLoading} = useAuthHook();
@@ -54,6 +55,10 @@ const Login = () => {
 
   return (
     <>
+    <Helmet>
+        <title className="uppercase">TASK-BD | login</title>
+        
+      </Helmet>
            <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row">
                 <div className="w-1/2 mr-12">
