@@ -17,12 +17,6 @@ const Home = () => {
   const [sortField, setSortField] = useState('creationDate');
   const [sortOrder, setSortOrder] = useState('desc');
 
-
-
-    
-
-
-
   const [filters, setFilters] = useState({
     brand: '',
     category: '',
@@ -31,7 +25,7 @@ const Home = () => {
   });
   
   const query = new URLSearchParams(filters).toString();
-  
+  console.log("testing----",query);
    const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFilters(prevFilters => ({
@@ -40,11 +34,6 @@ const Home = () => {
     }));
   };
 
-  const handleReset = () => {
-    setFilters(''); // Reset the select option
-    setFilters(''); // Reset the select option
-    setFilters(''); // Reset the select option
-  };
 
 
 
@@ -55,13 +44,7 @@ const Home = () => {
  useEffect(() => {
         const fetchProducts = async () => {
             try {
-                
-
-                //hosting
                 const response = await axios.get(`https://task-product-server.vercel.app/api/products?page=${page}&limit=${limit}&search=${search}&sortField=${sortField}&sortOrder=${sortOrder}`);
-
-                // //local
-                // const response = await axios.get(`http://localhost:5000/api/products?page=${page}&limit=${limit}&search=${search}&sortField=${sortField}&sortOrder=${sortOrder}`);
 
                 
                 // const data = await response.json();
@@ -82,13 +65,7 @@ const Home = () => {
     useEffect(() => {
         const filterProduct = async () => {
             try {
-
-                 
-                // hosting
                 const response = await axios.get(`https://task-product-server.vercel.app/api/products/fil?${query}`);
-
-                // //local
-                // const response = await axios.get(`http://localhost:5000/api/products/fil?${query}`);
 
               
                 const data = response.data;
@@ -134,9 +111,6 @@ const Home = () => {
         <title className="uppercase">TASK-BD | Home</title>
         
       </Helmet>
-
-
-
     <div className="container mx-auto p-4">
        
             
@@ -145,65 +119,19 @@ const Home = () => {
             <h2 className="text-center uppercase mt-8 mb-2">Product Filter</h2>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3">
             
-            <div className="form-control w-full max-w-xs">
-            
-                <select
-                    className="select select-bordered"
-                    value={filters.category}
-                    onChange={handleInputChange}
-                    name="category"
-                >
-      
-                    <option value="">Choose a category</option>
-                    <option value="T-Shirts">T-Shirts</option>
-                    <option value="Jeans">Jeans</option>
-                    <option value="Jackets">Jackets</option>
-                    <option value="Dresses">Dresses</option>
-                    <option value="Shorts">Shorts</option>
-                </select>
-            </div>
+            <input type="text" name="brand" value={filters.brand} onChange={handleInputChange}  className="input input-bordered  mb-4" placeholder="brand name..." />
 
             
-            <div className="form-control w-full max-w-xs">
-           
-            <select
-                className="select select-bordered"
-                value={filters.brand}
-                onChange={handleInputChange}
-                name="brand"
-            >
-      
-                <option value="">Choose a brand</option>
-                <option value="Nike">Nike</option>
-                <option value="Adidas">Adidas</option>
-                <option value="Puma">Puma</option>
-                <option value="Under Armour">Under Armour</option>
-                <option value="Levi's">Levi's</option>Harley Davidson
-                <option value="Wrangler">Wrangler</option>
-                <option value="Harley Davidson">Harley Davidson</option>
-                <option value="Columbia">Columbia</option>
-                <option value="Canada Goose">Canada Goose</option>Zara  Hugo Boss H&M Reformation
-                <option value="Zara">Zara</option>
-                <option value="Hugo">Hugo</option>Harley Davidson
-                <option value="Boss">Boss</option>
-                <option value="H&M">H&M</option>
-                <option value="Reformation">Reformation</option>
-            </select>
-      </div>
+            <input type="text" name="category" value={filters.category} onChange={handleInputChange} className="input input-bordered  " placeholder="Category name..." />
 
-        
+            
             <input type="number" name="minPrice" value={filters.minPrice} onChange={handleInputChange} className="input input-bordered  mb-4" placeholder="minPrice..."/>
 
-        
             
             <input type="number" name="maxPrice" value={filters.maxPrice} onChange={handleInputChange} className="input input-bordered mb-4" placeholder="maxPrice..." />
 
-
-                
             
             </div>
-
-          
         </div>
         
 
@@ -254,10 +182,9 @@ const Home = () => {
             
             <h1 className="text-2xl font-bold mb-4 text-center uppercase">Products</h1>
             <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-
+          
                
-                {products?.length>0 && products.map(product => (
-                    
+                {products.map(product => (
                     <li key={product._id} className="card bg-base-100 shadow-md">
                         <figure>
                             <img src={product.ProductImage} alt={product.productName} className="w-full h-48 object-cover" />
