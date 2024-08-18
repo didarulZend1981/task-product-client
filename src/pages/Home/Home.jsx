@@ -190,17 +190,20 @@ const Home = () => {
                             <img src={product.ProductImage} alt={product.productName} className="w-full h-48 object-cover" />
                         </figure>
                         <div className="card-body">
-                            <h2 className="card-title text-base font-medium"><span className="uppercase">Name</span>:<span>{product.ProductName}</span></h2>
-                            <p text-base><span>Description</span>:{product.Description}</p>
-                            <div className="flex justify-between">
-                            <p className="text-lg font-semibold">Price: ${product.price}</p>
-                            <p>Ratings: {product.Ratings}</p>
+                            <h2 className="card-title text-base font-medium "><span className="uppercase text-[#23BE0A]">Name</span>:<span>{product.ProductName}</span></h2>
+                            <p text-base><span className="text-[#23BE0A]">Description</span> : {product.Description}</p>
+                            <div className="flex">
+                            <p className="text-lg font-semibold w-[150px] border-x-0"><span className="text-[#23BE0A]">Price</span> : ${product.price}</p>
+                            <p className="w-[150px]"><span className="text-[#23BE0A]">Ratings</span>: {product.Ratings}</p>
                             </div>
 
-                            <div className="flex justify-between"><p>Category: {product.category}</p><p>Brand: {product.brand}</p></div>
+                            <div className="flex">
+                                <p className="w-[120px]"><span className="text-[#23BE0A]">Category</span>: {product.category}</p>
+                                <p className="w-[120px]"><span className="text-[#23BE0A]">Brand</span>: {product.brand}</p>
+                            </div>
                             
                             
-                            <p className="text-sm text-gray-500 text-center font-bold">Created: {new Date(product.creationDate).toLocaleString()}</p>
+                            <p className="text-sm text-gray-500 text-center font-bold"><span className="text-[#23BE0A]">Created</span>: {new Date(product.creationDate).toLocaleString()}</p>
                         </div>
                     </li>
                 ))}
